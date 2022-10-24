@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<li><a href="{% url 'pessoa.novo' %}">Novo</a></li>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Data de nascimento</th>
+            <th>Ativa</th>
+            <tr>Ações</tr>
+        </tr>
+        {{ pessoa. }}
+        <tbody>
+            {% for pessoa in object_list %}
+                <tr>
+                    <td> {{ pessoa.nome_completo}}</td>
+                    <td>  {{ pessoa.data_nascimento|date:"m/d/Y"}}</td>
+                    <td>  
+                        {% if  pessoa.ativa%}
+                        sim
+                        {% else %}
+                        Não
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'pessoa.editar' pessoa.pk %}">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </thead>
+</table>
+{% endblock content %}
